@@ -1,0 +1,259 @@
+[
+    {
+        "id": "fcb9786aa42a8795",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6307809a8d7fd490",
+        "type": "mqtt in",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "7eaca1251579e1c1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "10a418e355ede68c"
+            ]
+        ]
+    },
+    {
+        "id": "10a418e355ede68c",
+        "type": "json",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "30da0c0e796781c6",
+                "81bc1697e5b2861f",
+                "3f7aa2205d152af5"
+            ]
+        ]
+    },
+    {
+        "id": "30da0c0e796781c6",
+        "type": "function",
+        "z": "fcb9786aa42a8795",
+        "name": "Nombre",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "cd2c2e9072604400",
+                "4c74873f136eb55c"
+            ]
+        ]
+    },
+    {
+        "id": "81bc1697e5b2861f",
+        "type": "function",
+        "z": "fcb9786aa42a8795",
+        "name": "Temp. (indicador)",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "aa0fbc7ddd52e8e2"
+            ]
+        ]
+    },
+    {
+        "id": "3f7aa2205d152af5",
+        "type": "function",
+        "z": "fcb9786aa42a8795",
+        "name": "Temp. (gráfica)",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "3815cc816d742169"
+            ]
+        ]
+    },
+    {
+        "id": "cd2c2e9072604400",
+        "type": "ui_text_input",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "label": "Nombre:",
+        "tooltip": "-- aprendiz de Paloma y Hugo ---",
+        "group": "dd70abe0.14cb38",
+        "order": 8,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 620,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa0fbc7ddd52e8e2",
+        "type": "ui_gauge",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 9,
+        "width": "6",
+        "height": "6",
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#729fcf",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 630,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3815cc816d742169",
+        "type": "ui_chart",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 10,
+        "width": "6",
+        "height": "6",
+        "label": "Temperatura",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "50",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 630,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c74873f136eb55c",
+        "type": "debug",
+        "z": "fcb9786aa42a8795",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7eaca1251579e1c1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "18.193.126.219",
+        "port": "1883",
+        "clientid": "moaj1801",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "2",
+        "birthPayload": "Hola, soy Marving",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd70abe0.14cb38",
+        "type": "ui_group",
+        "name": "Etiqueta (nombre)",
+        "tab": "6d54a11.6b2c0e",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6d54a11.6b2c0e",
+        "type": "ui_tab",
+        "name": "Temperatura",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
